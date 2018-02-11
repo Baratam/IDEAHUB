@@ -1,0 +1,13 @@
+{
+  "groups": [{
+    "name": "expense",
+    "type": "com.vv.config.AppProperties",
+    "sourceType": "com.vv.config.AppProperties"
+  }],
+  "properties": [{
+    "name": "expense.file-location",
+    "type": "java.lang.String",
+    "sourceType": "com.vv.config.AppProperties"
+  }],
+  "hints": []
+}

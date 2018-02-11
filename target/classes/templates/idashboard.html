@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	th:content="${_csrf.headerName}" />
+<title>Capgemini Hackathon Hub</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="./assets/css/bootstrap.min.css">
+<!-- Main Style -->
+<link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+<!-- Responsive Style -->
+<link rel="stylesheet" type="text/css"
+	href="./assets/css/responsive.css">
+<!-- Fonts -->
+<link rel="stylesheet" type="text/css"
+	href="./assets/fonts/font-awesome.min.css">
+<!-- Icon -->
+<link rel="stylesheet" type="text/css"
+	href="./assets/fonts/simple-line-icons.css">
+<!-- Slicknav -->
+<link rel="stylesheet" type="text/css" href="./assets/css/slicknav.css">
+<!-- Nivo Lightbox -->
+<link rel="stylesheet" type="text/css"
+	href="./assets/css/nivo-lightbox.css">
+<!-- Animate -->
+<link rel="stylesheet" type="text/css" href="./assets/css/animate.css">
+<!-- Owl carousel -->
+<link rel="stylesheet" type="text/css"
+	href="./assets/css/owl.carousel.css">
+<link rel="stylesheet" href="./assets/css/jquery.rateyo.min.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+<style>
+.demo-card-wide.mdl-card {
+  width: 300px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 50px;
+  background-color	: #e91e63;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+</style>
+
+<style type="text/css">
+.overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: white;
+	background-color: white;
+	overflow-x: hidden;
+	transition: 0.5s;
+	direction: ltr;
+}
+
+.overlay-content {
+	position: relative;
+	top: 25%;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.overlay a {
+	padding: 8px;
+	text-decoration: none;
+	font-size: 36px;
+	color: blue;
+	display: block;
+	transition: 2.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+	color: #f1f1f1;
+}
+
+.overlay .closebtn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+}
+
+.cmtClass {
+	width: 50em;
+	border: 1px solid #000000;
+	word-wrap: break-word;
+	border-color: white;
+	box-shadow: 10px;
+	background-color: skyblue;
+}
+
+
+</style>
+
+</head>
+<body>
+
+	<!-- Header Area wrapper Starts -->
+	<header id="header-wrap">
+		<!-- Roof area Starts -->
+		<div id="roof" class="hidden-xs">
+			<div class="container">
+				<div class="col-md-6 col-sm-6">
+					<div class="info-bar-address">
+						<i class="icon-location-pin"></i> Hyderabad, TS, INDIA
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<!-- Quick Contacts Starts -->
+					<div class="quick-contacts">
+						<span><i class="icon-phone"></i> 040 2312 6000</span>
+						<!-- <span><i class="icon-envelope"></i><a href="#"><span class="__cf_email__" data-cfemail="61040c00080d21060c00080d4f020e0c">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a></span> -->
+						<span><i class="icon-envelope"></i><a href="#">hr@capgemini.com</a></span>
+						Welcome: <span sec:authentication="name">USER</span>
+					</div>
+					<!-- Quick Contacts End -->
+				</div>
+			</div>
+		</div>
+		<!-- Roof area End -->
+
+		<!-- Nav Menu Section Start -->
+		<div class="navigation-menu">
+			<nav class="navbar navbar-default navbar-event" role="navigation"
+				data-spy="affix" data-offset-top="20">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header col-md-2">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar"
+							aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index"><img
+							src="./assets/img/capgemini_logo.png" alt=""
+							style="padding-top: 5px; width: 270px;"></a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="navbar">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="index">Home</a></li>
+							<!-- <li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">Pages <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="about">About Us</a></li>
+									<li><a href="gallery">Gallery</a></li>
+									<li><a href="submitIdea">Submit Idea</a></li>
+									<li><a href="sponsors">Sponsors</a></li>
+									<li><a href="single-post">Single Post</a></li>
+								</ul></li> -->
+							<li><a href="schedule">Schedule</a></li>
+							<li><a href="speakers">Speakers</a></li>
+							<li ><a href="ideaList">Ideas</a></li>
+							<li class="animated bounceIn"><a href="submitIdea">SUBMIT
+									IDEA</a></li>
+							<li><a href="contact">Contact</a></li>
+							<li class="active"><a href="idashboard">Dashboard</a></li>
+							<li><a href="javascript: document.logoutForm.submit()"
+								sec:authorize="isAuthenticated()">Logout</a></li>
+						</ul>
+					</div>
+					<!-- /navbar-collapse -->
+				</div>
+				<!-- /container -->
+
+				<!-- Mobile Menu Start -->
+				<ul class="wpb-mobile-menu">
+					<li><a href="index">Home</a></li>
+					<li><a href="#">Pages</a>
+						<ul class="dropdown">
+							<li><a href="about">About Us</a></li>
+							<li><a href="gallery">Gallery</a></li>
+							<li><a href="submitIdea">Submit Idea</a></li>
+							<li><a href="sponsors">Sponsors</a></li>
+							<li><a href="single-post">Single Post</a></li>
+						</ul></li>
+					<li><a href="schedule">Schedule</a></li>
+					<li><a href="speakers">Speakers</a></li>
+					<li class="active"><a href="blog">Blog</a></li>
+					<li><a href="submitIdea">SUBMIT IDEA</a></li>
+					<li><a href="contact">Contact</a></li>
+					<li><a href="javascript: document.logoutForm.submit()"
+								sec:authorize="isAuthenticated()">Logout</a></li>
+				</ul>
+				<!-- Mobile Menu End -->
+
+			</nav>
+		</div>
+		<!-- Nav Menu Section End -->
+
+	</header>
+	<!-- Header Area wrapper End -->
+
+	<!-- Page Header Start -->
+	<div class="page-header" id="headerdiv">
+		<div class="container">
+			<div class="page-header-inner">
+				<ol class="breadcrumb wow fadeInDown" data-wow-delay="300ms">
+					<li><a href="index">Home</a></li>
+					<li class="page">Dashboard</li>
+				</ol>
+				<h1 class="page-title wow fadeInRight" data-wow-delay="300ms">
+					Contribute</h1>
+			</div>
+		</div>
+	</div>
+	<!-- Page Header End-->
+
+	<!-- Blog Section Start -->
+	<section id="content" class="section">
+		<div class="container">
+			<div class="row">
+				<!-- Start Blog Posts -->
+				<div class="col-md-8">
+					<!-- Start Post -->
+					<div id="postdiv">
+						<!-- End Post -->
+					</div>
+					<form name="logoutForm" th:action="@{/logout}" method="post"
+						th:hidden="true">
+						<input type="submit" value="Sign Out" />
+					</form>
+					<!-- Start Pagination -->
+					<span sec:authentication="principal.authorities" id="roleId" hidden="true">[ROLE_USER, ROLE_ADMIN]</span>
+					<div id="paginationDivID">
+						<nav aria-label="Page navigation">
+							<ul class="pagination" id="paginationId"></ul>
+						</nav>
+					</div>
+					<!-- End Pagination -->
+				</div>
+				<!-- End Blog Posts -->
+
+
+				<!--Sidebar-->
+				<aside id="sidebar" class="col-md-4 right-sidebar">
+					<!-- Search Widget -->
+					<div class="widget widget-search">
+						<h5 class="widget-title">Search Your Ideas</h5>
+						<form action="#">
+							<input class="form-control" type="search" id="searchmail" placeholder="Your Email Here" /> 
+							
+							<!-- <div id="ssearch" >
+								<select class="form-control" id="istatus" name="istatus">
+									<OPTION value="NA">Select...</OPTION>
+									<OPTION VALUE="initial">INITIAL</OPTION>
+									<OPTION VALUE="assign">ASSIGN</OPTION>
+									<OPTION VALUE="review">REVIEW</OPTION>
+									<OPTION VALUE="publish">PUBLISH</OPTION>
+									<OPTION VALUE="reject">REJECT</OPTION>
+									<OPTION VALUE="onhold">ON-HOLD</OPTION>
+									<OPTION VALUE="approve">APPROVE</OPTION>
+								</select> 
+							</div> -->
+							<a href="#" class="search-btn" onclick="searchIdeas($('#searchmail').val())"><i
+								class="fa fa-search"></i></a>
+						</form>
+					</div>
+
+					<!-- Popular Posts widget -->
+					<div class="widget widget-popular-posts">
+						<div id="postSearchDiv"></div>
+						<!-- <ul class="posts-list">
+               
+                 <li>
+                  <div class="widget-thumb">
+                    <a href="#"><img src="./assets/img/blog/p1.jpg" alt="" /></a>
+                  </div>
+                  <div class="widget-content">
+                    <a href="#">Hackathon1</a>
+                    <span><i class="icon-calendar"></i>2016/10/28</span>
+                    <span><i class="icon-folder"></i>Banking</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </li>
+              </ul> -->
+					</div>
+
+					<!-- Categories Widget -->
+					<!--  <div class="widget widget-categories">
+              <h5 class="widget-title">Categories</h5>
+              <ul class="cat-list">
+                <li>
+                  <a href="#">Life Style</a>
+                  <span class="num-posts">09</span>
+                </li>
+                <li>
+                  <a href="#">Blog</a>
+                  <span class="num-posts">15</span>
+                </li>
+                <li>
+                  <a href="#">Fasion</a>
+                  <span class="num-posts">21</span>
+                </li>
+                <li>
+                  <a href="#">Sports</a>
+                  <span class="num-posts">05</span>
+                </li>
+                <li>
+                  <a href="#">Finance</a>
+                  <span class="num-posts">29</span>
+                </li>
+                <li>
+                  <a href="#">Political</a>
+                  <span class="num-posts">17</span>
+                </li>
+              </ul>
+            </div> -->
+				</aside>
+				<!--End sidebar-->
+			</div>
+		</div>
+	</section>
+	<!-- Blog Section End -->
+	
+		<!-- idea view modal start-->
+		<div class="modal fade" id="ideaVcModal" role="dialog" hidden="true" data-backdrop="static" data-keyboard="false">
+		    <div class="modal-dialog modal-lg">
+		      <div class="modal-content">
+		        <div class="modal-header" style="background-color:#e91e63;">
+		          <button type="button" class="close" data-dismiss="modal" >&times;</button>
+		          <h4 class="modal-title" style="color:white;">View and Comment Idea</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="table-responsive">          
+		              <table class="table">
+		                <tbody><tr>
+		                  <td>ID :</td>
+		                  <td id="setideaid"></td>
+		                </tr>
+		                <tr>
+		                  <td>Idea Type :</td>
+		                  <td id="setItype"></td>
+		                </tr>
+		                <tr>
+		                  <td>Problem :</td>
+		                  <td id="setprob"></td>
+		                </tr>
+		                <tr>
+		                  <td>Industry :</td>
+		                  <td id="setindustry"></td>
+		                </tr>
+		                <tr>
+		                  <td>Area Of Function :</td>
+		                  <td id="setareaoffunc"></td>
+		                </tr>
+		                <tr>
+		                  <td>Technology :</td>
+		                  <td id="settech"></td>
+		                </tr>
+		                <tr>
+		                  <td>Solution Title :</td>
+		                  <td id="setsoltitle"></td>
+		                </tr>
+		                <tr>
+		                  <td>Solution Description:</td>
+		                  <td id="setsoldesc"></td>
+		                </tr>
+		                <tr>
+		                  <td>BU Benifit :</td>
+		                  <td id="setbubenift"></td>
+		                </tr>
+		                <tr>
+		                  <td>BU Investment :</td>
+		                  <td id="setbuinvest"></td>
+		                </tr>
+		                <tr>
+		                  <td>BU Income :</td>
+		                  <td id="setbuincome"></td>
+		                </tr>
+		                <tr>
+		                  <td>Status :</td>
+		                  <td id="setstatus"></td>
+		                </tr>
+		                <tr>
+		                  <td>Rating :</td>
+		                  <td id="setrating"></td>
+		                </tr>
+		                <tr>
+		                  <td>Cap Name :</td>
+		                  <td id="setcapname"></td>
+		                </tr>
+		                <tr>
+		                  <td>Cap Id :</td>
+		                  <td id="setcapid"></td>
+		                </tr>
+		                <tr>
+		                  <td>Cap Email :</td>
+		                  <td id="setcapmail"></td>
+		                </tr>
+		                <tr>
+		                  <td>Phone :</td>
+		                  <td id="setphone"></td>
+		                </tr>
+		                <tr>
+		                  <td>BU Service :</td>
+		                  <td id="setbuservice"></td>
+		                </tr>
+		                <tr>
+		                  <td>Project :</td>
+		                  <td id="setproject"></td>
+		                </tr>
+		                <tr>
+		                  <td>Location :</td>
+		                  <td id="setlocation"></td>
+		                </tr>
+		                <tr>
+		                  <td>Comment History :</td>
+		                  <td>
+		                    <div style="color: blue;" id="getComents">View</div>
+		                    <div id="CmtsDiv"></div>
+		                  </td>
+		                </tr>
+		                <tr>
+		                  <td>Comment :</td>
+		                  <td><textarea id="icomment" rows="5" cols="70"></textarea></td>
+		                </tr>
+		                <tr>
+		                  <td>Mail Id :</td>
+		                  <td><input id="cmtrMail" name="cmtrMail" size="25" maxlength="20">&nbsp;@capgemini.com</td>
+		                </tr>
+		                <tr>
+		                  <td></td>
+		                  <td>
+		                  <button onclick="commentIdea()" id="comment-submit" class="btn btn-common">Submit Comment <i class="fa fa-comments-o" aria-hidden="true"></i></button>
+		                    </td>
+		                </tr>
+		              </tbody>
+		            </table>
+		      </div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-common" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		<input type="hidden" id="hidideaid" name="hidideaid" />
+		<!-- idea view modal end -->
+		
+		
+		<div class="modal fade" id="contribModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#e91e63;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:white;">View and Comment Idea</h4>
+        </div>
+        <div class="modal-body">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#single">Single Contribution</a></li>
+                <li><a data-toggle="tab" href="#team">Team contribution</a></li>
+              </ul>
+  
+  <div class="tab-content">
+ 
+    <div id="single" class="tab-pane fade in active">
+     <form role="form"  method="post" id="indiForm" onsubmit="indiContributeSubmit();" action="javascript:;">
+     <br>
+     <div class="container-fluid">
+		  <div class="row">
+		  	<div class="col-sm-6">Team name: <input type="text" id='steamName' required maxlength="35" class="form-control" placeholder = "Team name"/></div>
+		    <div class="col-sm-6">Time required: <input type="number" id='stimeline' class="form-control" required placeholder="months" min = "1" max = "12"/></div>
+		  </div>
+	</div>
+	<br>		
+  		<div class="table-responsive">          
+  		<table class="table">
+						<thead style="background-color: skyblue;">
+							<tr >
+								<th class="text-center">
+									#
+								</th>
+								<th class="text-center">
+									Name
+								</th>
+								<th class="text-center">
+									Mail
+								</th>
+								<th class="text-center">
+									Project/Account
+								</th>
+								<th class="text-center">
+									Technologies( ; sep )
+								</th>
+								<th class="text-center">
+									Roles( ; sep )
+								</th>
+								
+							</tr>
+						</thead>
+						<tbody >
+							<tr>
+								<td>
+								<div class="form-control" style="background-color:#e91e63;color:#ffffff">1</div>
+								</td>
+								<td>
+								<input type="text" id='nameIndi' required placeholder='Name' class="form-control" />
+								</td>
+								<td>
+								<input type="email" id='mailIndi' required placeholder='Mail' class="form-control"/>
+								</td>
+								<td>
+								<input type="text" id='projectIndi' required placeholder='Project/Account' class="form-control"/>
+								</td>
+								<td>
+								<input type="text" id='techIndi' required placeholder='Technologies' class="form-control"/>
+								</td>
+								<td>
+								<input type="text" id='roleIndi' required placeholder='Role' class="form-control"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				<button id="single-contribute-submit" type="submit" class="btn btn-common">Contribute <i class="fa fa-user" aria-hidden="true"></i></button>		
+				</form>
+    </div>
+    
+   
+    <div id="team" class="tab-pane fade">
+     <form role="form"  method="post" id="teamForm" onsubmit="teamContributeSubmit();" action="javascript:;">
+    <br>
+    <div class="container-fluid">
+		  <div class="row">
+		  	<div class="col-sm-6">Team name: <input type="text" id='tTeamName' required maxlength="35" class="form-control" placeholder = "Team name"/></div>
+		    <div class="col-sm-6">Time required: <input type="number" id='tTimeLine' class="form-control" required placeholder="months" min = "1" max = "12"/></div>
+		  </div>
+	</div>
+	<br>
+      <div class="table-responsive">          
+  		<table class="table" id="tab_logic">
+            <thead style="background-color: skyblue;">
+              <tr>
+                <th class="text-center">
+                  #
+                </th>
+                <th class="text-center">
+                  Name
+                </th>
+                <th class="text-center">
+                  Mail
+                </th>
+                <th class="text-center">
+                  Project/Account
+                </th>
+                <th class="text-center">
+                  Technologies(;sep)
+                </th>
+                <th class="text-center">
+                  Roles(;sep)
+                </th>
+                <th class="text-center">
+                  Add
+                </th>
+                <th class="text-center">
+                  Delete
+                </th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="addr0">
+                <td>
+                <div class="form-control" style="background-color:#e91e63;color:#ffffff">1</div>
+                </td>
+                <td>
+                <input type="text" id="name0" required placeholder="Name" class="form-control">
+                </td>
+                <td>
+                <input type="email" id="mail0" required placeholder="Mail" class="form-control">
+                </td>
+                <td>
+                <input type="text" id="project0" required placeholder="Project/Account" class="form-control">
+                </td>
+                <td>
+                <input type="text" id="tech0" required placeholder="Technologies" class="form-control">
+                </td>
+                <td>
+                <input type="text" id="role0" required placeholder="Role" class="form-control">
+                </td>
+                <td style="padding-top: 24px;">
+                <button type="button" id="add_row"  class=" btn-success btn-sm " >+</button>
+                </td>
+                <td style="padding-top: 24px;">
+                <button type="button" id="delete_row" class="btn-danger btn-sm">-</button>
+                </td>
+              </tr>
+              <tr id="addr1">
+                <td>
+                <div class="form-control" style="background-color:#e91e63;color:#ffffff">2</div>
+                </td>
+                <td>
+                <input type="text" id="name1" required placeholder="Name" class="form-control">
+                </td>
+                <td>
+                <input type="email" id="mail1" required placeholder="Mail" class="form-control">
+                </td>
+                <td>
+                <input type="text" id="project1" required placeholder="Project/Account" class="form-control">
+                </td>
+                <td>
+                <input type="text" id="tech1" required placeholder="Technologies" class="form-control">
+                </td>
+                <td>
+                <input type="text" id="role1" required placeholder="Role" class="form-control">
+                </td>
+              </tr>
+                        <tr id="addr2"></tr>
+            </tbody>
+          </table>
+          </div>
+          <button id="team-contribute-submit" type="submit" class="btn btn-common">Contribute <i class="fa fa-users" aria-hidden="true"></i></button>
+          </form>
+    </div>
+    
+  </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-common" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+		<div class="modal fade" id="contribDetailsModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#e91e63;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:white;">View Contributing Team Details</h4>
+        </div>
+        <div class="modal-body">
+  
+  <div class="tab-content">
+ 
+    <div id="single1" class="tab-pane fade in active">
+     <br>
+	<br>		
+  		<div class="table-responsive">          
+  		<table class="table">
+						<thead style="background-color: skyblue;">
+							<tr >
+								 
+								<th class="text-center">
+									Team Name
+								</th>
+								<th class="text-center">
+									Timeline (months)
+								</th>
+								 <th class="text-center">
+									Contributor
+								</th>
+								<th class="text-center">
+									Project/Account
+								</th>
+								<th class="text-center">
+									Technologies( ; sep )
+								</th>
+								<th class="text-center">
+									Email
+								</th> 
+								
+							</tr>
+						</thead>
+						
+						<tbody id="cntbModDtls">
+							
+						</tbody>
+						
+					</table>
+					</div>
+    </div>
+  </div>
+          
+        </div>
+        <div class="modal-footer">
+		          <button type="button" class="btn btn-common" data-dismiss="modal">Close</button>
+		        </div>
+      </div>
+    </div>
+  </div>
+  
+  		<div class="modal fade" id="submitProjectModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#e91e63;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:white;">Publish your project</h4>
+        </div>
+        <div class="modal-body">
+  
+  <div class="tab-content">
+ 
+    <div id="single1" class="tab-pane fade in active">
+    Kudos, It's time to publish you Project.
+     <br>
+	<br>
+	<form action="" id="publishForm">
+	<div class="table-responsive">          
+  		<table class="table" id="tab_logic">
+  		<tr>
+  		<th>
+  			Project Document
+  		</th>
+  		<th>
+  			Project Demo video
+  		</th>
+  		</tr>
+  		
+  		<tr>
+  		<td><input type="file" class="input" id="publishdoc"></td>
+  		<td><input type="file" class="input" id="publishvideo"></td>
+  		</tr>
+  		
+  		
+  	</table>
+  	</div>
+  	</form>	
+	
+			
+  		
+    </div>
+  </div>
+          
+        </div>
+        <div class="modal-footer">
+		     <button type="button" class="btn btn-common" onclick="submitProject()">Submit</button> 
+		     <button type="button" class="btn btn-common" data-dismiss="modal">Close</button>
+		        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+	<!-- Footer Section Start -->
+	<footer class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<h3>
+						<img src="./assets/img/cap-logo-footer.jpg" alt=""
+							style="width: 200px;">
+					</h3>
+					<p>If you think you have the passion, attitude and capability
+						to join us the next big software company s so that we can get the
+						convers.</p>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<h3>Support</h3>
+					<ul>
+						<li><a href="#">Support</a></li>
+						<li><a href="#">Docs</a></li>
+						<li><a href="#">Contact Us</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<h3>Learn More</h3>
+					<ul>
+						<li><a href="#">How it Works</a></li>
+						<li><a href="ideaList">Ideas</a></li>
+						<li><a href="#">Log In</a></li>
+						<li><a href="#">Sign Up</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12">
+					<h3>Quick Link</h3>
+					<ul>
+						<li><a href="#">Schedule</a></li>
+						<li><a href="#">Gallery</a></li>
+						<li><a href="#">Team</a></li>
+						<li><a href="#">Blog</a></li>
+						<li><a href="#">Submit Idea</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Copytight Start -->
+	<section id="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="copyright-text text-center">
+						©Designed and Developed by <a href="#"> Hackathon Team </a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Copytight End   -->
+
+	<!-- Go to Top Link -->
+	<a href="#" class="back-to-top"> <i class="icon-arrow-up"></i>
+	</a>
+
+	<div class="bottom">
+		<a href="#" class="settings"></a>
+	</div>
+
+	<!-- jQuery Load -->
+	<script src="./assets/js/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="./assets/js/bootstrap.min.js"></script>
+	
+	<!-- Countdown Js -->
+	<script src="./assets/js/jquery.countdown.min.js"></script>
+	<!-- Smooth scroll JS -->
+	<script src="./assets/js/smooth-scroll.js"></script>
+	<!-- Wow Scroll -->
+	<script src="./assets/js/wow.js"></script>
+	<!-- Owl carousel -->
+	<script src="./assets/js/owl.carousel.min.js"></script>
+	<!-- Slicknav js -->
+	<script src="./assets/js/jquery.slicknav.js"></script>
+	<!--  Nivo lightbox Js -->
+	<script src="./assets/js/nivo-lightbox.js"></script>
+	<!-- Contact Form Scripts -->
+	<script src="./assets/js/form-validator.min.js"></script>
+	<script src="./assets/js/contact-form-script.js"></script>
+	<!--  Color Switcher js -->
+	<!-- <script src="./assets/js/color-switcher.js"></script>  -->
+	<!-- All Js plugin -->
+	<script src="./assets/js/main.js"></script>
+	<!-- Map JS -->
+	<script type="text/javascript" src="./assets/js/jquery.mapit.min.js"></script>
+	<script src="./assets/js/initializers.js"></script>
+	<script src="./assets/js/jquery.twbsPagination.min.js"></script>
+	<script src="./assets/js/moment.js"></script>
+	<script src="./assets/js/jquery.rateyo.min.js"></script>
+	<script src="./apijs/api-properties.js"></script>
+	<script src="./apijs/ideasDash-scripts.js"></script>
+</body>
